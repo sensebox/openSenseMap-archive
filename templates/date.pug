@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content="text/html" charset='utf-8')
+    title Index.of archive.opensensemap.org/#{date}
+    link(href="../style.css" rel="stylesheet")
+  body
+    h1 Index of archive.opensensenmap.org/#{date}
+    table(border="0" cellspacing="0" cellpadding="0")
+      tbody
+        tr
+          th Name
+          th Last modified
+          th Size
+          th Zip
+        tr
+          th(colspan="4")
+            hr
+        tr
+          td.
+            #[a(href='../') ../]
+          td &#160;
+          td &#160;
+          td &#160;
+        each device, index in devices
+          tr
+            td.
+              #[a(href=device.basename) #{device.basename}]
+            td= dayjs(device.lastmod).format('DD-MMM-YYYY hh:mm:ss')
+            td #{sizes[index]}
+            td.
+              #[a(href='https://uni-muenster.sciebo.de/index.php/s/HyTbguBP4EkqBcp/download?path=/data/'+ date +'/'+ device.basename) #{device.basename}.zip]

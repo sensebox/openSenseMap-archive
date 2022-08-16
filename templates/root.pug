@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-Type' content="text/html" charset='utf-8')
+    title Index of archive.opensensemap.org/
+    link(href="style.css" rel="stylesheet")
+  body
+    h1 Index of archive.opensensemap.org/
+    p.
+      This is the data dump of opensensemap.org. Please make yourself familiar with the #[a(href='README') README] and the #[a(href='LICENSE') LICENSE].
+    table(border="0" cellspacing="0" cellpadding="0")
+      tbody
+        tr
+          th Name
+          th Last modified
+          th Size
+          th Zip
+        tr
+          th(colspan="4")
+            hr
+        each date in dates
+          tr
+            td.
+              #[a(href=date.basename) #{date.basename}]
+            td= dayjs(date.lastmod).format('DD-MMM-YYYY hh:mm:ss')
+            if sizes.get(date.basename)
+              td(class="folder-size" data-date=date.basename data-folder-size=sizes.get(date.basename)) #{sizes.get(date.basename)}
+            else
+              td(class="folder-size" data-date=date.basename data-folder-size="0") 0
+            td.
+              #[a(href='https://uni-muenster.sciebo.de/index.php/s/HyTbguBP4EkqBcp/download?path=/data/'+ date.basename) #{date.basename}.zip]

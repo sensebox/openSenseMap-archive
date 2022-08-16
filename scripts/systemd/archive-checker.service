@@ -1,0 +1,11 @@
+[Unit]
+Description=Checks if archiver has finished
+Wants=archivechecker.timer
+
+[Service]
+Type=oneshot
+WorkingDirectory=<Set absolute path to folder containing the scripts>
+ExecStart=<Set absolute path to folder containing the scripts>/check-container.sh -s archive
+
+[Install]
+WantedBy=multi-user.target

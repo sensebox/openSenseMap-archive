@@ -1,0 +1,12 @@
+archive/*
+dumps/*
+scripts/mongodb/*
+scripts/systemd/*
+.dockerignore
+node_modules
+npm-debug.log
+Dockerfile
+.git
+.gitignore
+.env
+.env.example

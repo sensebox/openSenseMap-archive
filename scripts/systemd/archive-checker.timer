@@ -1,0 +1,10 @@
+[Unit]
+Description=Checks if archiver has finished
+Requires=archive-checker.service
+
+[Timer]
+Unit=archive-checker.service
+OnCalendar=*-*-* *:00:00
+
+[Install]
+WantedBy=timers.target
