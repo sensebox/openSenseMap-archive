@@ -80,9 +80,9 @@ async function main() {
         .toArray()
 
       if (values.length === 0) {
-        console.log(
-          `No measurements found for device: ${box.id} & sensor: ${sensor._id}`
-        );
+        // console.log(
+        //   `No measurements found for device: ${box.id} & sensor: ${sensor._id}`
+        // );
       } else {
 
         // Just create Box folder and box JSON file if we have at least one sensor with data

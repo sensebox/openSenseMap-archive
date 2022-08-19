@@ -18,4 +18,7 @@ USER node
 WORKDIR /usr/src/app
 COPY --chown=node:node --from=build /usr/src/app/node_modules /usr/src/app/node_modules
 COPY --chown=node:node . /usr/src/app
-CMD ["./wait-for-it.sh", "mongo:27017", "--strict", "--timeout=300", "--", "dumb-init", "node", "/usr/src/app/archive.js"]
+
+COPY --chown=node:node ./scripts/utilities/wait-for-it.sh /usr/src/app/wait-for-it.sh
+
+CMD ["dumb-init", "./wait-for-it.sh", "db:27017", "--strict", "--timeout=300", "--", "node", "/usr/src/app/src/archive.js"]

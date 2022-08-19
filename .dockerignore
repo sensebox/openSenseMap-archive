@@ -2,6 +2,7 @@ archive/*
 dumps/*
 scripts/mongodb/*
 scripts/systemd/*
+.github/*
 .dockerignore
 node_modules
 npm-debug.log
