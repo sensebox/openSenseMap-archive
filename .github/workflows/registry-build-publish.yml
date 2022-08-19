@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: osem-archiver
+  IMAGE_NAME: sensebox/osem-archiver
 
 jobs:
   build-and-push-images:
