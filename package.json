@@ -1,7 +1,7 @@
 {
-  "name": "pug",
+  "name": "opensensemap-archiver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Scripts, tools and infrastructure to generate the openSenseMap Archive",
   "type": "module",
   "main": "src/archive.js",
   "engines": {
