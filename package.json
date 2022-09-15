@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Scripts, tools and infrastructure to generate the openSenseMap Archive",
   "type": "module",
-  "main": "src/archive.js",
+  "main": "./src/archive.js",
+  "exports": "./src/archive.js",
   "engines": {
     "node": ">=18"
   },
