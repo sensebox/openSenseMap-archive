@@ -4,7 +4,7 @@ Requires=archive-checker.service
 
 [Timer]
 Unit=archive-checker.service
-OnCalendar=*-*-* *:00:00
+OnCalendar=*-*-* *:0/15
 
 [Install]
 WantedBy=timers.target
