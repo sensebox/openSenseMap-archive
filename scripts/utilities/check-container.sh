@@ -25,11 +25,32 @@ if [ -z "${DOCKER_COMPOSE_SERVICE}" ]; then
     usage
 fi
 
-IS_RUNNING=$(docker-compose ps --services --filter "status=running" | grep "$DOCKER_COMPOSE_SERVICE")
-if [ "$IS_RUNNING" != "" ]; then
-    echo "The service is still running!!!"
-else
-    echo "The service is not running anymore!!!"
-    echo "Going to shutdown all container..."
-    docker-compose down
-fi
+check_archiver () {
+  IS_RUNNING=$(docker-compose ps --services --filter "status=running" | grep "$DOCKER_COMPOSE_SERVICE")
+
+  # Set date
+  ARCHIVE_DATE='yesterday'
+  ARCHIVE_FOLDER="./archive/$(date -u --date "$ARCHIVE_DATE" +%F)"
+
+  if [ "$IS_RUNNING" != "" ]; then
+      echo "The service is still running!!!"
+  else
+      echo "The service is not running anymore!!!"
+      echo "Going to shutdown all container..."
+      docker-compose down
+
+      if [ -d "$ARCHIVE_FOLDER" ]; then
+        echo "Copying archive files from  ${ARCHIVE_FOLDER}..."
+        cp -r "$ARCHIVE_FOLDER" /home/ubuntu/archive-data/data
+      fi
+
+      echo "Cleanup generated archive files..."
+      rm -rf "$ARCHIVE_FOLDER"
+
+      echo "Cleanup resources..."
+      rm -f ./dumps/boxes
+      rm -f ./dumps/measurements
+  fi
+}
+
+check_archiver
