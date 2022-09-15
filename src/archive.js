@@ -7,6 +7,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { MongoClient } from "mongodb";
 import dayjs from "dayjs";
 import ObjectsToCsv from "objects-to-csv";
+import { notifyMattermost } from "./utils/notification.js";
 
 // Connection URL
 const url = `mongodb://${process.env.MONGO_HOST}:27017/${process.env.MONGO_DB}`;
@@ -120,6 +121,12 @@ async function main() {
 }
 
 main()
-  .then(console.log)
-  .catch(console.error)
+  .then((response) => {
+    console.log(response)
+    notifyMattermost(INDEX_DATE)
+  })
+  .catch((error) => {
+    console.error(error)
+    notifyMattermost(INDEX_DATE, error)
+  })
   .finally(() => client.close());
