@@ -1,0 +1,10 @@
+archive.localhost {
+
+  root * /etc/caddy/roots/archive
+
+  encode zstd gzip
+  file_server {
+    browse
+    hide ".gitkeep"
+  }
+}
