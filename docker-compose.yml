@@ -2,6 +2,17 @@ version: "3"
 
 services:
 
+  caddy:
+    image: caddy:2.5.2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./archive:/etc/caddy/roots/archive
+
   archiver:
     image: osem-archiver:latest
     restart: on-failure
@@ -22,3 +33,7 @@ services:
       - ./scripts/mongodb/osem_admin.sh:/docker-entrypoint-initdb.d/osem_admin.sh
       - ./scripts/mongodb/osem_seed_boxes.sh:/docker-entrypoint-initdb.d/osem_seed_boxes.sh
       - ./scripts/mongodb/osem_seed_measurements.sh:/docker-entrypoint-initdb.d/osem_seed_measurements.sh
+
+volumes:
+  caddy_data:
+  caddy_config:
